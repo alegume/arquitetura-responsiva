@@ -7,7 +7,7 @@ ADC.setup(0x48)
 def loop():
 	while True:
 		print(ADC.read(0))
-		# ADC.write(ADC.read(0))
+		# ADC.write(ADC.read(0))fetch
 
 def destroy():
 	ADC.write(0)
