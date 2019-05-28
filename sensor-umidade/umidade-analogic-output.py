@@ -16,4 +16,4 @@ while True:
 	bus.write_byte(address, A0)
 	value = bus.read_byte(address)
 	print('AOUT:{}  '.format(value * 3.3 / 255))
-	time.sleep(0.2)
+	time.sleep(0.1)
