@@ -15,5 +15,6 @@ bus = smbus.SMBus(1)
 while True:
 	bus.write_byte(address, A0)
 	value = bus.read_byte(address)
-	print('AOUT:{}  '.format(value * 3.3 / 255))
+	print('DDP:{}  '.format(value))
+	print('Umidade:{}  '.format(value * 3.3 / 255))
 	time.sleep(0.1)
