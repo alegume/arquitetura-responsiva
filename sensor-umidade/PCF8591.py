@@ -54,11 +54,11 @@ def write(val):
 		print e
 
 if __name__ == "__main__":
-	setup(0x48)
+	setup(0x49)
 	while True:
 		print 'AIN0 = ', read(0)
 		print 'AIN1 = ', read(1)
 		tmp = read(0)
 		tmp = tmp*(255-125)/255+125 # LED won't light up below 125, so convert '0-255' to '125-255'
 		write(tmp)
-#		time.sleep(0.3)
+		time.sleep(0.3)
