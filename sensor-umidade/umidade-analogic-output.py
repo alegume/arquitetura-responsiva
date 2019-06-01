@@ -15,6 +15,7 @@ bus = smbus.SMBus(1)
 ###
 
 ''' Lembretes
+PARECE QUE SÓ A2 ESTÁ FUNCIONANDO!!!!!!!!!!!!!!!!!
 Em 5V
 	Completamente seco = 255
 	Completamente molhado ~= [12, 16]
