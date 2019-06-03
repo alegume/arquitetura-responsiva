@@ -17,11 +17,12 @@ bus = smbus.SMBus(1)
 ''' Lembretes
 PARECE QUE SÓ A2 ESTÁ FUNCIONANDO!!!!!!!!!!!!!!!!!
 Em 5V
-	Completamente seco = 255
-	Completamente molhado ~= [12, 16]
+	Completamente seco = [249, 251]
+	Completamente molhado ~= [35, 40]
 
 Em 3.3V
-
+	Completamente seco = 255
+	Completamente molhado ~= [12, 16] || [16, 22]
 
 #Volts = value * 3.3 / 255
 '''
