@@ -66,7 +66,7 @@ def log_nuvem(row):
 	# Todas as worksheets
 	try:
 		worksheet = spreadsheet.worksheet('dados-sensores')
-		worksheet.append_row(['Luz', 'Temperatura', 'Umidade1', 'Umidade2'])
+
 	except Exception as e:
 		print(e)
 		print('Erro ao abrir worksheet')
@@ -86,6 +86,7 @@ def main():
 	)
 
 	hora = datetime.now().strftime('%d/%m/%Y %H:%M:%-S')
+	dados = {}
 	for descricao, entrada in sensores.items():
 		try:
 			bus.write_byte(address, entrada)
@@ -94,16 +95,36 @@ def main():
 			# Leitura e ajuste empírico
 			value = (bus.read_byte(address) - 275) * -1
 			# data e hora, luz, temperatura, umidade1, umidade2
-			row = [hora, dados['Luz'], dados['Temperatura'], dados['Umidade1'], dados['Umidade2']]
-			log_local(row)
-			log_nuvem(row)
+			dados[descricao] = value
 			print('{}  -> {}  \n'.format(descricao, value))
 		except Exception as e:
 			print(e)
 			print('Erro ao ler entrada ', entrada)
+	
+	# Ações a serem executadas
+	#abrir_telhado = irrigar = False
+	if dados['Luz'] > 80:
+		abrir_telhado = 'Abrir telhado'
+	else:
+		abrir_telhado = 'Fechar telhado'
+
+	if dados['Umidade1'] < 150 or dados['Umidade2'] < 150:
+		irrigar = 'Sim'
+	else:
+		irrigar = 'Não'
+
+	print('Telhado  -> {}  \n'.format(abrir_telhado))
+	print('Irrigar  -> {}  \n'.format(irrigar))
+
+	# Dados para gerar logs
+	row = [hora, dados['Luz'], dados['Temperatura'], dados['Umidade1'], dados['Umidade2'], abrir_telhado, irrigar]
+	
+	log_local(row)
+	log_nuvem(row)
 
 if __name__ == '__main__':
 	# TODO: loop apenas para demonstracao
 	while True:
 		main()
 		time.sleep(2)
+		print('-' * 50)
