@@ -4,11 +4,20 @@
 
 ### Lembretes sobre o conversos PCF8591
 
-- Ligações
+- Ligações (Input)
 
 	1) Ligar o SDA no SDA1 (fisical pin 3) e SCL no SCL1 (fisical pin 5)
 
 	2) Alimentação 3.3V
+
+- Ligações (Output)
+
+	1) A0 -> Sensor de luz
+
+	2) A1 -> Temperatura
+	
+	3) A2 e A3 -> Entradas analógicas (Umidade)
+
 
 https://www.sunfounder.com/learn/sensor-kit-v2-0-for-raspberry-pi-b-plus/lesson-13-pcf8591-sensor-kit-v2-0-for-b-plus.html
 
@@ -19,7 +28,6 @@ https://www.sunfounder.com/learn/sensor-kit-v2-0-for-raspberry-pi-b-plus/appendi
 
 
 #### Links úteis
-
 
 https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_PCF8591_AD/DA
 
