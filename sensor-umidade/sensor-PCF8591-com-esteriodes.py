@@ -16,7 +16,7 @@ bus = smbus.SMBus(1)
 ###
 
 ''' Lembretes
-UMIDADE A2 # Entrada analógica normal (sem esteroide)
+UMIDADE (Entrada A2 e A3) # Entrada analógica normal (sem esteroide)
 	Em 5V
 		Completamente seco = [249, 251]
 		Completamente molhado ~= [35, 40]
@@ -25,19 +25,13 @@ UMIDADE A2 # Entrada analógica normal (sem esteroide)
 		Completamente seco = 255
 		Completamente molhado ~= [12, 16] || [16, 22]
 
-lUZ A0 
+lUZ A0
 	Bastante escuro (mas não escuridão total) >= ~225
 	Sala com 9 luzes brancas fria = [145, 148]
 	Flash muito forte = [24, 30]
 
 Temperatura (medido com sensor DS18B20)
 	18~19 C = 255??
-	
-
-Umidade (Entrada A2 e A3)
-	A = 2830,0g -> [51, 62]
-	B = 2775,4g -> [56, 71]
-	
 
 #Volts = value * 3.3 / 255
 '''
@@ -50,7 +44,7 @@ while True:
 		bus.read_byte(address) # Dummy read (workaraound)
 		value = bus.read_byte(address)
 		print('{}  -> {}  \n'.format(descricao, value))
-	
+
 	analogic_in = dict(zip(['Umidade 1', 'Umidade 2'],\
 		[A2, A3]))
 	for descricao, entrada in analogic_in.items():
@@ -58,7 +52,7 @@ while True:
 		bus.read_byte(address) # Dummy read (workaraound)
 		value = bus.read_byte(address)
 		print('{}  -> {}  \n'.format(descricao, value))
-		
+
 
 	print('-' * 35)
 	time.sleep(1.5)
