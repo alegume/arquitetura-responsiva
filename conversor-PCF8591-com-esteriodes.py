@@ -85,6 +85,7 @@ def main():
 		)
 	)
 
+	hora = datetime.now().strftime('%d/%m/%Y %H:%M:%-S')
 	for descricao, entrada in sensores.items():
 		try:
 			bus.write_byte(address, entrada)
@@ -95,6 +96,7 @@ def main():
 			# data e hora, luz, temperatura, umidade1, umidade2
 			row = [hora, dados['Luz'], dados['Temperatura'], dados['Umidade1'], dados['Umidade2']]
 			log_local(row)
+			log_nuvem(row)
 			print('{}  -> {}  \n'.format(descricao, value))
 		except Exception as e:
 			print(e)
