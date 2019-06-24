@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 
 import smbus
-import time
 
 ### Configuracoes
-# Verificque o endereco com 'sudo i2cdetect -y 1'
+# Verifique o endereco com 'sudo i2cdetect -y 1'
 address = 0x48
 # Entradas e sensores integrados
 A0 = 0x40  # Sensor de luz RDL (Resistor Dependente de Luz) (Jumper P5)
@@ -36,21 +35,19 @@ Temperatura (medido com sensor DS18B20)
 #Volts = value * 3.3 / 255
 '''
 
-sensors = dict(zip(['Luz', 'Temperatura'],\
-	[A0, A1]))
-for descricao, entrada in sensors.items():
-	bus.write_byte(address, entrada)
-	bus.read_byte(address) # Dummy read (workaraound)
-	value = bus.read_byte(address)
-	print('{}  -> {}  \n'.format(descricao, value))
+#sensores = dict(zip(['Luz', 'Temperatura'], [A0, A1]))
+sensores = dict(zip(['Luz', 'Temperatura', 'Umidade 1', 'Umidade 2'], [A0, A1, A2, A3]))
 
-analogic_in = dict(zip(['Umidade 1', 'Umidade 2'],\
-	[A2, A3]))
-for descricao, entrada in analogic_in.items():
-	bus.write_byte(address, entrada)
-	bus.read_byte(address) # Dummy read (workaraound)
-	value = bus.read_byte(address)
-	print('{}  -> {}  \n'.format(descricao, value))
-
+for descricao, entrada in sensores.items():
+	try: 
+		bus.write_byte(address, entrada)
+		# Primeira amostra eh descartada (workaraound)
+		bus.read_byte(address)
+		# Leitura e ajuste
+		value = (bus.read_byte(address) - 275) * -1
+		print('{}  -> {}  \n'.format(descricao, value))
+	except Exception as e:
+		print(e)
+		print('Erro ao ler entrada ', entrada)
 
 print('-' * 35)
