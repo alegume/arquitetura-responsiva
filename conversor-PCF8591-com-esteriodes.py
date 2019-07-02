@@ -96,7 +96,7 @@ def main():
 			if descricao == 'Luz':
 				value = (bus.read_byte(address) - 275) * -1
 			else:
-				value = (bus.read_byte(address) - 255) * -1
+				value = (bus.read_byte(address) - 285) * -1
 
 			# data e hora, luz, temperatura, umidade1, umidade2
 			dados[descricao] = value
