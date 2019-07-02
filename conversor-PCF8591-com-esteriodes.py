@@ -39,6 +39,22 @@ Temperatura (medido com sensor DS18B20)
 #Volts = value * 3.3 / 255
 '''
 
+'''
+Vaso C
+	(semana passada) -> 25, 31
+	
+
+Vaso A
+	(semana passada) -> 40, 48
+	50ml -> 214, 248 
+	50ml -> 267, 278
+
+Vaso B
+	25ml -> 108, 185
+
+
+'''
+
 LUZ_ABRIR = 100
 UMIDADE_IRRIGAR = 150
 
@@ -127,5 +143,5 @@ if __name__ == '__main__':
 	# TODO: loop apenas para demonstracao
 	while True:
 		main()
-		time.sleep(3)
+		time.sleep(60)
 		print('-' * 50)
