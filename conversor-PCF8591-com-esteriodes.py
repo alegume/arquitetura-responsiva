@@ -39,7 +39,7 @@ Temperatura (medido com sensor DS18B20)
 #Volts = value * 3.3 / 255
 '''
 
-LUZ_ABRIR = 80
+LUZ_ABRIR = 100
 UMIDADE_IRRIGAR = 150
 
 # Informacoes do host
