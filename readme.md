@@ -7,13 +7,13 @@ https://docs.google.com/spreadsheets/d/1Hw8-rVa7wzrbIT5mSutrP8jpIAwXoScdfnhxPoiW
 
 ### Lembretes sobre o conversos PCF8591
 
-- Ligações (Input)
+- Ligações (Output)
 
 	1) Ligar o SDA no SDA1 (fisical pin 3) e SCL no SCL1 (fisical pin 5)
 
 	2) Alimentação 3.3V
 
-- Ligações (Output)
+- Ligações (Input)
 
 	1) A0 -> Sensor de luz
 
