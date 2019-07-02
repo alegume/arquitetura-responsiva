@@ -93,7 +93,11 @@ def main():
 			# Primeira amostra eh descartada (workaraound)
 			bus.read_byte(address)
 			# Leitura e ajuste empírico
-			value = (bus.read_byte(address) - 275) * -1
+			if descricao == 'Luz':
+				value = (bus.read_byte(address) - 275) * -1
+			else:
+				value = (bus.read_byte(address) - 255) * -1
+
 			# data e hora, luz, temperatura, umidade1, umidade2
 			dados[descricao] = value
 			print('{}  -> {}  \n'.format(descricao, value))
