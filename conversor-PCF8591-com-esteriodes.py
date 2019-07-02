@@ -25,13 +25,13 @@ bus = smbus.SMBus(1)
 UMIDADE (Entrada A2 e A3) # Entrada analógica normal (sem esteroide)
 	Em 3.3V
 		Completamente seco ~= [20, 27]
-		Completamente molhado ~= [, ]
+		Completamente molhado ~= [250, 255]
 
 LUZ A0
 	Bastante escuro (mas não escuridão total) ~=
 	Luz em ambiente interno durante o dia ~= 130
 	Sala com 9 luzes brancas fria ~= 150
-	Flash muito forte ~= [, ]
+	Flash muito forte >= 220
 
 Temperatura (medido com sensor DS18B20)
 	18~19 C = 255??
@@ -93,10 +93,7 @@ def main():
 			# Primeira amostra eh descartada (workaraound)
 			bus.read_byte(address)
 			# Leitura e ajuste empírico
-			if descricao == 'Luz':
-				value = (bus.read_byte(address) - 275) * -1
-			else:
-				value = (bus.read_byte(address) - 285) * -1
+			value = (bus.read_byte(address) - 280) * -1
 
 			# data e hora, luz, temperatura, umidade1, umidade2
 			dados[descricao] = value
