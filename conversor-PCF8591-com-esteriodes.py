@@ -23,24 +23,24 @@ bus = smbus.SMBus(1)
 
 ''' Lembretes
 UMIDADE (Entrada A2 e A3) # Entrada analógica normal (sem esteroide)
-	Em 5V
-		Completamente seco = [249, 251]
-		Completamente molhado ~= [35, 40]
-
 	Em 3.3V
-		Completamente seco = 255
-		Completamente molhado ~= [12, 16] || [16, 22]
+		Completamente seco ~= [20, 27]
+		Completamente molhado ~= [, ]
 
 LUZ A0
-	Bastante escuro (mas não escuridão total) >= ~225
-	Sala com 9 luzes brancas fria = [145, 148]
-	Flash muito forte = [24, 30]
+	Bastante escuro (mas não escuridão total) ~=
+	Luz em ambiente interno durante o dia ~= 130
+	Sala com 9 luzes brancas fria ~= 150
+	Flash muito forte ~= [, ]
 
 Temperatura (medido com sensor DS18B20)
 	18~19 C = 255??
 
 #Volts = value * 3.3 / 255
 '''
+
+LUZ_ABRIR = 80
+UMIDADE_IRRIGAR = 150
 
 # Informacoes do host
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -100,15 +100,15 @@ def main():
 		except Exception as e:
 			print(e)
 			print('Erro ao ler entrada ', entrada)
-	
+
 	# Ações a serem executadas
 	#abrir_telhado = irrigar = False
-	if dados['Luz'] > 80:
+	if dados['Luz'] > LUZ_ABRIR:
 		abrir_telhado = 'Abrir telhado'
 	else:
 		abrir_telhado = 'Fechar telhado'
 
-	if dados['Umidade1'] < 150 or dados['Umidade2'] < 150:
+	if dados['Umidade1'] < UMIDADE_IRRIGAR or dados['Umidade2'] < UMIDADE_IRRIGAR:
 		irrigar = 'Sim'
 	else:
 		irrigar = 'Não'
@@ -118,7 +118,7 @@ def main():
 
 	# Dados para gerar logs
 	row = [hora, dados['Luz'], dados['Temperatura'], dados['Umidade1'], dados['Umidade2'], abrir_telhado, irrigar]
-	
+
 	log_local(row)
 	log_nuvem(row)
 
@@ -126,5 +126,5 @@ if __name__ == '__main__':
 	# TODO: loop apenas para demonstracao
 	while True:
 		main()
-		time.sleep(2)
+		time.sleep(3)
 		print('-' * 50)
