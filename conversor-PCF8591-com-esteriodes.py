@@ -140,5 +140,4 @@ def main():
 	log_nuvem(row)
 
 if __name__ == '__main__':
-	# TODO: loop apenas para demonstracao
 	main()
