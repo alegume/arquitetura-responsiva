@@ -141,7 +141,4 @@ def main():
 
 if __name__ == '__main__':
 	# TODO: loop apenas para demonstracao
-	while True:
-		main()
-		time.sleep(60)
-		print('-' * 50)
+	main()
