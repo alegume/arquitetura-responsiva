@@ -11,7 +11,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 ### Configuracoes
 # Verifique o endereco com 'sudo i2cdetect -y 1'
-address = 0x48
+address = 0x49
 # Entradas e sensores integrados
 A0 = 0x40  # Sensor de luz RDL (Resistor Dependente de Luz) (Jumper P5)
 A1 = 0x41  # Sensor de temperatura integrada (Jumper P4)
