@@ -56,7 +56,7 @@ Vaso B
 '''
 
 LUZ_ABRIR = 100
-UMIDADE_IRRIGAR = 150
+UMIDADE_IRRIGAR = 80
 
 # Informacoes do host
 dir_path = os.path.dirname(os.path.realpath(__file__))
