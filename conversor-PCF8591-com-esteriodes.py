@@ -11,7 +11,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 ### Configuracoes
 # Verifique o endereco com 'sudo i2cdetect -y 1'
-address = 0x49
+address = 0x48
 # Entradas e sensores integrados
 A0 = 0x40  # Sensor de luz RDL (Resistor Dependente de Luz) (Jumper P5)
 A1 = 0x41  # Sensor de temperatura integrada (Jumper P4)
@@ -42,11 +42,11 @@ Temperatura (medido com sensor DS18B20)
 '''
 Vaso C
 	(semana passada) -> 25, 31
-	
+
 
 Vaso A
 	(semana passada) -> 40, 48
-	50ml -> 214, 248 
+	50ml -> 214, 248
 	50ml -> 267, 278
 
 Vaso B
@@ -125,7 +125,7 @@ def main():
 	else:
 		abrir_telhado = 'Fechar telhado'
 
-	if dados['Umidade1'] < UMIDADE_IRRIGAR or dados['Umidade2'] < UMIDADE_IRRIGAR:
+	if dados['Umidade1'] < UMIDADE_IRRIGAR: # or dados['Umidade2'] < UMIDADE_IRRIGAR:
 		irrigar = 'Sim'
 	else:
 		irrigar = 'Não'
