@@ -125,7 +125,7 @@ def main():
 	else:
 		abrir_telhado = 'Fechar telhado'
 
-	if dados['Umidade2'] < UMIDADE_IRRIGAR: # or dados['Umidade1'] < UMIDADE_IRRIGAR:
+	if dados['Umidade2'] < UMIDADE_IRRIGAR or dados['Umidade1'] < UMIDADE_IRRIGAR:
 		irrigar = 'Sim'
 	else:
 		irrigar = 'Não'
