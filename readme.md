@@ -2,7 +2,7 @@
 
 ### Dados em tempo real
 
-https://docs.google.com/spreadsheets/d/1Hw8-rVa7wzrbIT5mSutrP8jpIAwXoScdfnhxPoiWRzs/edit#gid=0
+https://docs.google.com/spreadsheets/d/1LnrL_EUFmzhEqQ6TO6wQRV8RxWP0TxrFoN5E141NDyo/edit?usp=sharing
 
 
 ### Lembretes sobre o conversos PCF8591
