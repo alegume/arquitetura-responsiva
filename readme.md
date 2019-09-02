@@ -69,4 +69,3 @@ ESPECIFICAÇÕES:
 - Dimensões (CxLxE): ~36x23x10mm;
 - Peso: 3g;
 - Peso com embalagem: 9g.
-
