@@ -69,3 +69,8 @@ ESPECIFICAÇÕES:
 - Dimensões (CxLxE): ~36x23x10mm;
 - Peso: 3g;
 - Peso com embalagem: 9g.
+
+### Lembretes sobre o micro servo 9g (Tower Pro NG 90)
+
+
+Referência: http://blog.baudaeletronica.com.br/raspberry-pi-3-com-micro-servo-9g/
