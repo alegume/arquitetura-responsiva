@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 #GPIO.setwarnings(False)
 PORTA = 14
-GPIO.setup(PORTA, GPIO.OUT) # Define o PIN 18 como saida
+GPIO.setup(PORTA, GPIO.OUT) # Define o PIN 14 como saida
 
 def ligar():
 	print('Ligado')
@@ -25,8 +25,3 @@ while (comando != -1):
 
 # Forcar desligar no final
 desligar()
-
-
-
-
-
