@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 servoPIN = 12
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(servoPIN, GPIO.OUT)
 
 p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
