@@ -10,7 +10,7 @@ p.start(5) # Initialization
 try:
   while True:
     x = input('duty cycle:\n')
-    p.ChangeDutyCycle(12)
+    p.ChangeDutyCycle(float(x))
 except KeyboardInterrupt:
   p.stop()
   GPIO.cleanup()
