@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time as time
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
 
 servo = GPIO.PWM(18,50)
