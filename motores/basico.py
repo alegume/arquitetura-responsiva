@@ -1,20 +1,30 @@
 import RPi.GPIO as GPIO
-import time as time
+import time
 
+servoPIN = 17
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(18, GPIO.OUT)
+GPIO.setup(servoPIN, GPIO.OUT)
 
-servo = GPIO.PWM(18,50)
-servo.start(0)
+p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
+p.start(2.5) # Initialization
 try:
-   while True:
-     for dc in range(50,101,5):
-        servo.ChangeDutyCycle(dc)
-        time.sleep(0.5)
-     for dc in range(100,45,-5):
-        servo.ChangeDutyCycle(dc)
-        time.sleep(0.5)
+  while True:
+    p.ChangeDutyCycle(5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(7.5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(10)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(12.5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(10)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(7.5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(2.5)
+    time.sleep(0.5)
 except KeyboardInterrupt:
-   pass
-servo.stop()
-GPIO.cleanup();
+  p.stop()
+  GPIO.cleanup()
