@@ -4,7 +4,7 @@ import time as time
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(18, GPIO.OUT)
 
-servo = GPIO.PWM(18,500)
+servo = GPIO.PWM(18,50)
 servo.start(0)
 try:
    while True:
