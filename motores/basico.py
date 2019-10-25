@@ -7,7 +7,7 @@ GPIO.setup(servoPIN, GPIO.OUT)
 
 p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
 x = input('start:\n')
-p.start(float(5)) # Initialization
+p.start(float(x)) # Initialization
 try:
   while True:
     x = input('duty cycle:\n')
