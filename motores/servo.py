@@ -42,8 +42,9 @@ def abrir(x=12, y=2):
 	p.stop()
 	GPIO.cleanup()
 
-fechar()
 abrir()
+fechar()
+
 
 
 
