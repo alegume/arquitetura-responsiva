@@ -72,5 +72,9 @@ ESPECIFICAÇÕES:
 
 ### Lembretes sobre o micro servo 9g (Tower Pro NG 90)
 
+  Vermelho = VCC (5V)
+  Marron = Terra
+  Laranja = PWM (sinal)
+
 
 Referência: http://blog.baudaeletronica.com.br/raspberry-pi-3-com-micro-servo-9g/
