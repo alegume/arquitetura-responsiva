@@ -3,11 +3,11 @@
 import RPi.GPIO as GPIO
 import time
 
-servo_pin = 8
+servo_pin = 18
 
 #Ajuste estes valores para obter o intervalo completo do movimento do servo
-deg_0_pulse   = 1
-deg_180_pulse = 2
+deg_0_pulse   = 0.5
+deg_180_pulse = 2.5
 f = 50.0
 
 # Faca alguns calculos dos parametros da largura do pulso

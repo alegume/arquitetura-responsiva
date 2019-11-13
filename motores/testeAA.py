@@ -15,16 +15,16 @@ duty_range = pulse_range * k
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servo_pin, GPIO.OUT)
 pwm = GPIO.PWM(servo_pin,f)
-pwm.start(100)
+pwm.start(5)
 
 def set_angle(angle):
-    duty = deg_0_duty + (int(angle / 180.0)) * duty_range
+    duty = deg_0_duty + (angle / 180.0) * duty_range
     pwm.ChangeDutyCycle(duty)
     
 try:
     while True:
         angle = input("Enter angle (0 to 180):")
-        set_angle(int(angle))
+        set_angle(float(angle))
         
 finally:
     print("cleaning up")
