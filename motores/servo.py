@@ -1,41 +1,55 @@
-#Autor: Simon Monk
-
 import RPi.GPIO as GPIO
 import time
 
-servo_pin = 18
+def fechar(x=2, y=12):
+	servoPIN = 18
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(servoPIN, GPIO.OUT)
+	p = GPIO.PWM(servoPIN, 50) # GPIO 18 for PWM with 50Hz
+	p.start(x)
+	time.sleep(1)
+	passo = 5
+	fim = (y - x) * passo + 1
 
-#Ajuste estes valores para obter o intervalo completo do movimento do servo
-deg_0_pulse   = 0.5
-deg_180_pulse = 2.5
-f = 50.0
+	for i in range(0, fim):
+		p.ChangeDutyCycle(float(x+i/passo))
+		print(float(x+i/passo))
+		time.sleep(0.08)
 
-# Faca alguns calculos dos parametros da largura do pulso
-period = 1000/f
-k      = 100/period
-deg_0_duty = deg_0_pulse*k
-pulse_range = deg_180_pulse - deg_0_pulse
-duty_range = pulse_range * k
-
-#Iniciar o pino gpio
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(servo_pin,GPIO.OUT)
-pwm = GPIO.PWM(servo_pin,f)
-pwm.start(11)
-
-
-#time.sleep(2)
-
-def set_angle(angle):
-	duty = deg_0_duty + (float(angle)/180.0)* duty_range
-	pwm.ChangeDutyCycle(duty)
-
-try:
-	for i in range(11, 2, -1):
-		#angle = input("Enter angle (0 a 180): ")
-		#set_angle(angle)
-		pwm.ChangeDutyCycle(i)
-		time.sleep(0.2)
+	# Encerra
+	time.sleep(1)
+	p.stop()
 	GPIO.cleanup()
-except KeyboardInterrupt: 
+
+def abrir(x=12, y=2):
+	servoPIN = 18
+	GPIO.setmode(GPIO.BCM)
+	GPIO.setup(servoPIN, GPIO.OUT)
+	p = GPIO.PWM(servoPIN, 50) # GPIO 18 for PWM with 50Hz
+	p.start(x)
+	time.sleep(1)
+	passo = 5
+	fim = (x - y) * passo + 1
+	print('fim:', fim)
+
+	for i in range(0, fim):
+		p.ChangeDutyCycle(float(x-i/passo))
+		print(float(x-i/passo))
+		time.sleep(0.08)
+
+	# Encerra
+	time.sleep(1)
+	p.stop()
 	GPIO.cleanup()
+
+fechar()
+abrir()
+
+
+
+
+
+
+
+
+
