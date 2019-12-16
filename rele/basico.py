@@ -38,7 +38,7 @@ def Desligatd():
 
 
 ligar(PIN1)
-time.sleep(5)
+time.sleep(1)
 desligar(PIN1)
 
 
