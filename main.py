@@ -10,6 +10,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 import rele.basico as rele
+import motores.servo as servo
 
 ### Configuracoes
 # Verifique o endereco com 'sudo i2cdetect -y 1'
@@ -21,6 +22,10 @@ A2 = 0x42  # Entrada analógica normal (sem esteroide)
 A3 = 0x43  # Potenciometro  (Jumper P6)
 # for RPI version 1, use "bus = smbus.SMBus(0)"
 bus = smbus.SMBus(1)
+
+LUZ_ABRIR = 100
+UMIDADE_IRRIGAR = 80
+
 ###
 
 ''' Lembretes
@@ -57,11 +62,10 @@ Vaso B
 
 '''
 
-LUZ_ABRIR = 100
-UMIDADE_IRRIGAR = 80
 
 # Informacoes do host
 dir_path = os.path.dirname(os.path.realpath(__file__))
+'''
 hostname = socket.gethostname()
 
 # Credenciais do Google Drive API
@@ -70,6 +74,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name(os.path.join(dir_path, 
 client = gspread.authorize(creds)
 # Abre um documeto (spreadsheet)
 spreadsheet = client.open(hostname)
+'''
 
 def log_local(row):
 	try:
@@ -95,7 +100,7 @@ def log_nuvem(row):
 		print(e)
 		print('Erro ao enviar dados para a nuvem')
 
-ler pcf():
+def ler_pcf():
 	sensores = dict(
 		zip(
 			['Luz', 'Temperatura', 'Umidade1', 'Umidade2'],
@@ -103,7 +108,6 @@ ler pcf():
 		)
 	)
 
-	hora = datetime.now().strftime('%d/%m/%Y %H:%M:%-S')
 	dados = {}
 	for descricao, entrada in sensores.items():
 		try:
@@ -115,21 +119,26 @@ ler pcf():
 
 			# data e hora, luz, temperatura, umidade1, umidade2
 			dados[descricao] = value
-			print('{}  -> {}  \n'.format(descricao, value))
+			#print('{}  -> {}  \n'.format(descricao, value))
 		except Exception as e:
 			print(e)
 			print('Erro ao ler entrada ', entrada)
 	return dados
 
 def main():
+	hora = datetime.now().strftime('%d/%m/%Y %H:%M:%-S')
 	dados = ler_pcf()
+	
+	print(dados)
 
 	# Ações a serem executadas
 	#abrir_telhado = irrigar = False
 	if dados['Luz'] > LUZ_ABRIR:
 		abrir_telhado = 'Abrir telhado'
+		servo.abrir()
 	else:
 		abrir_telhado = 'Fechar telhado'
+		servo.fechar()
 
 	if dados['Umidade2'] < UMIDADE_IRRIGAR or dados['Umidade1'] < UMIDADE_IRRIGAR:
 		irrigar = 'Sim'
@@ -138,14 +147,16 @@ def main():
 		irrigar = 'Não'
 		rele.desligar(rele.PIN1)
 
-	print('Telhado  -> {}  \n'.format(abrir_telhado))
-	print('Irrigar  -> {}  \n'.format(irrigar))
+	print('Telhado  -> {}'.format(abrir_telhado))
+	print('Irrigar  -> {}'.format(irrigar))
 
 	# Dados para gerar logs
 	row = [hora, dados['Luz'], dados['Temperatura'], dados['Umidade1'], dados['Umidade2'], abrir_telhado, irrigar]
 
 	log_local(row)
-	log_nuvem(row)
+	#log_nuvem(row)
 
 if __name__ == '__main__':
 	main()
+	## LIMPEZA
+	#rele.desligar(rele.PIN1)
