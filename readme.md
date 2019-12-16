@@ -78,3 +78,10 @@ ESPECIFICAÇÕES:
 
 
 Referência: http://blog.baudaeletronica.com.br/raspberry-pi-3-com-micro-servo-9g/
+
+### Lembretes relé 5V 4 canais
+
+  Vcc = 5V
+  
+  
+  Referência: https://www.filipeflop.com/produto/modulo-rele-5v-4-canais/
