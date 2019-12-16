@@ -21,6 +21,7 @@ def ligar(x):
 def desligar(y):
 	print("Desligado.\n")
 	GPIO.output(y, GPIO.HIGH)
+	GPIO.cleanup()
 
 def ligatd():
 	print("Tudo ligado.\n")
@@ -35,11 +36,4 @@ def Desligatd():
 	GPIO.output(PIN2, GPIO.HIGH)
 	GPIO.output(PIN3, GPIO.HIGH)
 	GPIO.output(PIN4, GPIO.HIGH)
-
-
-ligar(PIN1)
-time.sleep(1)
-desligar(PIN1)
-
-
-GPIO.cleanup()
+	GPIO.cleanup()
