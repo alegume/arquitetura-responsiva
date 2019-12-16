@@ -1,8 +1,10 @@
 import RPi.GPIO as GPIO
 import time
 
-def fechar(x=2, y=12):
-	servoPIN = 18
+servoPIN = 18
+
+def abrir(x=2, y=12):
+	#servoPIN = 18
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(servoPIN, GPIO.OUT)
 	p = GPIO.PWM(servoPIN, 50) # GPIO 18 for PWM with 50Hz
@@ -21,8 +23,8 @@ def fechar(x=2, y=12):
 	p.stop()
 	GPIO.cleanup()
 
-def abrir(x=12, y=2):
-	servoPIN = 18
+def fechar(x=12, y=2):
+	#servoPIN = 18
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(servoPIN, GPIO.OUT)
 	p = GPIO.PWM(servoPIN, 50) # GPIO 18 for PWM with 50Hz
@@ -42,15 +44,5 @@ def abrir(x=12, y=2):
 	p.stop()
 	GPIO.cleanup()
 
-abrir()
 fechar()
-
-
-
-
-
-
-
-
-
-
+abrir()
