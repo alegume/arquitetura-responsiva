@@ -9,6 +9,8 @@ import csv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+import rele.basico as rele
+
 ### Configuracoes
 # Verifique o endereco com 'sudo i2cdetect -y 1'
 address = 0x48
@@ -93,7 +95,7 @@ def log_nuvem(row):
 		print(e)
 		print('Erro ao enviar dados para a nuvem')
 
-def main():
+ler pcf():
 	sensores = dict(
 		zip(
 			['Luz', 'Temperatura', 'Umidade1', 'Umidade2'],
@@ -117,6 +119,10 @@ def main():
 		except Exception as e:
 			print(e)
 			print('Erro ao ler entrada ', entrada)
+	return dados
+
+def main():
+	dados = ler_pcf()
 
 	# Ações a serem executadas
 	#abrir_telhado = irrigar = False
@@ -127,8 +133,10 @@ def main():
 
 	if dados['Umidade2'] < UMIDADE_IRRIGAR or dados['Umidade1'] < UMIDADE_IRRIGAR:
 		irrigar = 'Sim'
+		rele.ligar(rele.PIN1)
 	else:
 		irrigar = 'Não'
+		rele.desligar(rele.PIN1)
 
 	print('Telhado  -> {}  \n'.format(abrir_telhado))
 	print('Irrigar  -> {}  \n'.format(irrigar))
